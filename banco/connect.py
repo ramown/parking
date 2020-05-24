@@ -6,9 +6,9 @@ class Conexao:
 	conn = sqlite3.connect(DATABASE_NAME)
 	cursor = conn.cursor()
 
-	def __init__(self, tb_name, field_names):
-		self.tb_name = tb_name
-		self.field_names = field_names
+	def __init__(self, modelo):
+		self.modelo = modelo
+
 
 	@classmethod
 	def criar_schema(cls, nome_do_schema):
@@ -20,16 +20,12 @@ class Conexao:
 		except sqlite3.Error:
 			return False
 
+	def todos(self):
+		pass
+
+
 	def novo(self, tupla):
-		comando = sql_inserir(self.tb_name, self.field_names, tupla)
+		comando = sql_inserir(self.modelo.tb_name, self.modelo.fields, tupla)
 		self.cursor.execute(comando)
 		self.conn.commit()
 		print("Sucesso na inserção")
-
-
-
-
-		
-		
-
-

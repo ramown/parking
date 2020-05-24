@@ -1,5 +1,4 @@
 class Area:
-	fields = ['nome', 'vagas_max','vagas_livres', 'vagas_bloqueadas']
 	def __init__(self, nome, vagas_max, vagas_livres, vagas_bloqueadas):
 		self.nome = nome
 		self.vagas_max = vagas_max
