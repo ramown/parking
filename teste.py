@@ -10,10 +10,15 @@ import os
 # campos = ['nome', 'idade', 'qualquer']
 # tupla = (1,2,3)
 # Conexao('tb_name', campos).novo(tupla)
-# area = Area("Area B", 100, 100, 0)
-todos = AreaControle()
+controle = AreaControle()
+modelo = Area("Area ZF", 100, 100, 0)
 
-# for item in todos:
-# 	print(item)
+modelo_find = controle.get_id(4)
+# print(modelo_find.tupla())
+print(controle.get_id(4).tupla())
+modelo_find.nome = 'Zona BB'
+# modelo_find.vagas_livres = 50
+controle.salvar(modelo)
 
-print(todos.apagar(2))
+for i in controle.todos():
+	print(i)

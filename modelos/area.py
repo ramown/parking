@@ -5,15 +5,15 @@ class Area:
 		self.vagas_livres = vagas_livres
 		self.vagas_bloqueadas = vagas_bloqueadas
 
-	def get(self):
+	def tupla(self):
 		try:
 			return (
 				self.id, self.nome, self.vagas_max, 
 				self.vagas_livres, self.vagas_bloqueadas
 			)
-		except Exception as e:
+		except Exception:
 			return (
 				self.nome, self.vagas_max, 
 				self.vagas_livres, self.vagas_bloqueadas
 			)
-		
+

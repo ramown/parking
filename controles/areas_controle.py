@@ -1,4 +1,5 @@
 from banco.connect import Conexao
+from modelos.area import Area
 
 
 class AreaControle(Conexao):
@@ -7,7 +8,21 @@ class AreaControle(Conexao):
 		self.tb_name = 'areas'
 		super(AreaControle, self).__init__(self)
 
-	def salvar(self, modelo):
-		self.novo(modelo.get())
-		print(f"Salvo com sucesso: {modelo.get()}")
 
+	def get_id(self, id):
+		try:
+			id, nome, vagas_max, vagas_livres, vagas_bloqueadas = self.get(id)
+			modelo = Area(nome, vagas_max, vagas_livres, vagas_bloqueadas)
+			modelo.id = id
+			return modelo
+		except Exception as e:
+			print('Dado não cadastrado')
+			return None
+		
+		
+	def salvar(self, modelo):
+		tupla = modelo.tupla()
+		if len(tupla) == len(self.fields)+1:
+			self.atualizar(tupla)
+		else:
+			self.novo(tupla)
