@@ -22,12 +22,27 @@ class Conexao:
 			return False
 
 	def todos(self):
-		comando = self.sql_com.todos()
-		resultado = self.cursor.execute(comando)
+		resultado = self.cursor.execute(self.sql_com.todos())
 		return resultado.fetchall()
+
+	def get_id(self, id):
+		resultado = self.cursor.execute(self.sql_com.get(id))
+		return resultado.fetchone()
 
 
 	def novo(self, tupla):
 		self.cursor.execute(self.sql_com.inserir(tupla))
 		self.conn.commit()
 		print("Sucesso na inserção")
+
+
+	def apagar(self, id):
+		try:
+			self.cursor.execute(self.sql_com.excluir(id))
+			self.conn.commit()
+			print("Sucesso na exclusão")		
+		except Exception as e:
+			raise e
+		
+		
+		

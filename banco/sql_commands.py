@@ -6,10 +6,16 @@ class SQLCommands:
 	def todos(self):
 		return f"SELECT * FROM {self.tb_name}"
 
+	def get(self, id):
+		return f"SELECT * FROM {self.tb_name} WHERE id = {id}"
+
 	def inserir(self, tupla):
 		campos = ', '.join(self.fields_names)
 		valores = ', '.join([f"'{valor}'" if type(valor) == str else str(valor) for valor in tupla])
 		sql_command = f"INSERT INTO {self.tb_name} ({campos}) VALUES ({valores})"
 		return sql_command
+
+	def excluir(self, id):
+		return f"DELETE FROM {self.tb_name} WHERE id = {id}"
 
 

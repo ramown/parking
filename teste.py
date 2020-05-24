@@ -11,7 +11,9 @@ import os
 # tupla = (1,2,3)
 # Conexao('tb_name', campos).novo(tupla)
 # area = Area("Area B", 100, 100, 0)
-todos = AreaControle().todos()
+todos = AreaControle()
 
-for item in todos:
-	print(item)
+# for item in todos:
+# 	print(item)
+
+print(todos.apagar(2))
