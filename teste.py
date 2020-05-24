@@ -10,6 +10,8 @@ import os
 # campos = ['nome', 'idade', 'qualquer']
 # tupla = (1,2,3)
 # Conexao('tb_name', campos).novo(tupla)
-area = Area("Area B", 100, 100, 0)
-controle = AreaControle()
-controle.salvar(area)
+# area = Area("Area B", 100, 100, 0)
+todos = AreaControle().todos()
+
+for item in todos:
+	print(item)

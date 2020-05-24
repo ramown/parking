@@ -10,3 +10,4 @@ class AreaControle(Conexao):
 	def salvar(self, modelo):
 		self.novo(modelo.get())
 		print(f"Salvo com sucesso: {modelo.get()}")
+

@@ -1,6 +1,6 @@
 import sqlite3
 from settings import DATABASE_NAME
-from banco.sql_commands import sql_inserir
+from banco.sql_commands import SQLCommands 
 
 class Conexao:
 	conn = sqlite3.connect(DATABASE_NAME)
@@ -8,6 +8,7 @@ class Conexao:
 
 	def __init__(self, modelo):
 		self.modelo = modelo
+		self.sql_com = SQLCommands(modelo)
 
 
 	@classmethod
@@ -21,11 +22,12 @@ class Conexao:
 			return False
 
 	def todos(self):
-		pass
+		comando = self.sql_com.todos()
+		resultado = self.cursor.execute(comando)
+		return resultado.fetchall()
 
 
 	def novo(self, tupla):
-		comando = sql_inserir(self.modelo.tb_name, self.modelo.fields, tupla)
-		self.cursor.execute(comando)
+		self.cursor.execute(self.sql_com.inserir(tupla))
 		self.conn.commit()
 		print("Sucesso na inserção")
